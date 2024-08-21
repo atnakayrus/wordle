@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wordle/pages/game_page.dart';
+import 'package:wordle/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         seedColor: Colors.purple[800]!,
         brightness: Brightness.dark,
       )),
-      home: const GamePage(),
+      home: const HomePage(),
     );
   }
 }

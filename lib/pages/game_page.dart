@@ -91,14 +91,16 @@ class _GamePageState extends State<GamePage> {
                     }
                   });
                   if (game.hasWon || game.tried == 6) {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return EndPopup(
-                            game: game,
-                            resetGame: resetWord,
-                          );
-                        });
+                    Future.delayed(Duration(milliseconds: 300), () {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return EndPopup(
+                              game: game,
+                              resetGame: resetWord,
+                            );
+                          });
+                    });
                   }
                 },
                 child: const Icon(
