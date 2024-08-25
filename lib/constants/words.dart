@@ -7625,6 +7625,7 @@ class Words {
   }
 
   bool isValid(String word) {
-    return (validWords.contains(word.toLowerCase()) || words.contains(word));
+    return (validWords.contains(word.toLowerCase()) ||
+        words.contains(word.toLowerCase()));
   }
 }

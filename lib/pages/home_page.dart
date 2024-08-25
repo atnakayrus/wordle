@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wordle/constants/appstyle.dart';
 import 'package:wordle/constants/types.dart';
 import 'package:wordle/pages/game_page.dart';
+import 'package:wordle/pages/settings_page.dart';
 import 'package:wordle/widgets/letter_tile.dart';
 
 class HomePage extends StatefulWidget {
@@ -47,6 +48,25 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.all(20),
                   child: Text(
                     'P L A Y',
+                    style: AppStyle().tileStyle,
+                  ),
+                )),
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => SettingsPage(),
+                  ));
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColors().positive,
+                    boxShadow: [AppStyle().tileShadow],
+                  ),
+                  margin: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(20),
+                  child: Text(
+                    'SETTINGS',
                     style: AppStyle().tileStyle,
                   ),
                 ))

@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:wordle/constants/types.dart';
 import 'package:wordle/pages/home_page.dart';
+import 'package:provider/provider.dart';
+import 'package:wordle/providers/theme_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(ThemeNames.dark),
+    ),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -11,11 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.from(
-          colorScheme: ColorScheme.fromSeed(
-        seedColor: Colors.purple[800]!,
-        brightness: Brightness.dark,
-      )),
+      theme: context.watch<ThemeProvider>().getTheme,
       home: const HomePage(),
     );
   }
