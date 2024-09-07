@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:wordle/constants/appstyle.dart';
 import 'package:wordle/constants/config.dart';
 import 'package:wordle/constants/types.dart';
+import 'package:wordle/providers/theme_provider.dart';
 import 'package:wordle/widgets/letter_tile.dart';
 
 class Keyboard extends StatelessWidget {
@@ -112,13 +114,13 @@ class Keyboard extends StatelessWidget {
                   width: Config().getLogicalSize().width / 8,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    color: AppColors().blank,
+                    color: context.watch<ThemeProvider>().getBlank,
                     boxShadow: [AppStyle().keyShadow],
                   ),
                   child: Icon(
                     Icons.backspace_outlined,
                     size: Config().getLogicalSize().width / 15,
-                    color: Colors.white,
+                    color: Theme.of(context).primaryColorDark,
                   ),
                 ))
           ],

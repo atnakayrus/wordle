@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:wordle/constants/appstyle.dart';
 import 'package:wordle/constants/config.dart';
 import 'package:wordle/constants/types.dart';
+import 'package:wordle/providers/theme_provider.dart';
 
 class LetterTile extends StatelessWidget {
   final TileStatus status;
@@ -16,16 +18,16 @@ class LetterTile extends StatelessWidget {
       this.height = 52,
       this.width = 48});
 
-  Color colorDecider(TileStatus status) {
+  Color colorDecider(TileStatus status, BuildContext context) {
     switch (status) {
       case TileStatus.right:
-        return AppColors().positive;
+        return context.watch<ThemeProvider>().getPositive;
       case TileStatus.wrong:
-        return AppColors().negative;
+        return context.watch<ThemeProvider>().getNegative;
       case TileStatus.misused:
-        return AppColors().danger;
+        return context.watch<ThemeProvider>().getDanger;
       default:
-        return AppColors().blank;
+        return context.watch<ThemeProvider>().getBlank;
     }
   }
 
@@ -35,7 +37,7 @@ class LetterTile extends StatelessWidget {
       duration: Config().animationDuration,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(isLarge ? 10 : 4),
-        color: colorDecider(status),
+        color: colorDecider(status, context),
         boxShadow: [isLarge ? AppStyle().tileShadow : AppStyle().keyShadow],
       ),
       height: height,

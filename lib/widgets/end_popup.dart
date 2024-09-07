@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:wordle/constants/appstyle.dart';
 import 'package:wordle/constants/types.dart';
 import 'package:wordle/logic/game_logic.dart';
@@ -26,7 +27,6 @@ class EndPopup extends StatelessWidget {
     return AlertDialog(
       title: Text(
         game.hasWon ? "Y O U W I N" : "Y O U L O S E",
-        style: AppStyle().tileStyle,
         textAlign: TextAlign.center,
       ),
       content: Column(
@@ -35,8 +35,6 @@ class EndPopup extends StatelessWidget {
         children: [
           Text(
             "The word was ${game.word}",
-            style:
-                const TextStyle(fontSize: 22, color: Colors.white, height: 2),
           ),
           const SizedBox(
             height: 20,
@@ -63,7 +61,11 @@ class EndPopup extends StatelessWidget {
             },
             child: Text(
               "Cancel",
-              style: AppStyle().keyStyle,
+              style: GoogleFonts.poppins(
+                fontSize: 24,
+                height: 1.25,
+                color: Theme.of(context).primaryColorDark,
+              ),
             )),
         TextButton(
             onPressed: () {
@@ -72,7 +74,11 @@ class EndPopup extends StatelessWidget {
             },
             child: Text(
               "Restart",
-              style: AppStyle().keyStyle,
+              style: GoogleFonts.poppins(
+                fontSize: 24,
+                height: 1.25,
+                color: Theme.of(context).primaryColorDark,
+              ),
             )),
       ],
     );

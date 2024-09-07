@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:wordle/constants/appstyle.dart';
+import 'package:provider/provider.dart';
 import 'package:wordle/constants/words.dart';
 import 'package:wordle/logic/game_logic.dart';
+import 'package:wordle/providers/theme_provider.dart';
 import 'package:wordle/widgets/end_popup.dart';
 import 'package:wordle/widgets/keyboard.dart';
 import 'package:wordle/widgets/letter_tile.dart';
@@ -37,7 +38,6 @@ class _GamePageState extends State<GamePage> {
       appBar: AppBar(
         title: Text(
           "W O R D L E",
-          style: AppStyle().tileStyle,
         ),
         centerTitle: true,
       ),
@@ -65,20 +65,20 @@ class _GamePageState extends State<GamePage> {
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(
-                    AppColors().blank,
+                    context.watch<ThemeProvider>().getBlank,
                   ),
                 ),
                 onPressed: resetWord,
-                child: const Icon(
+                child: Icon(
                   Icons.restart_alt,
                   size: 48,
-                  color: Colors.white,
+                  color: Theme.of(context).primaryColorDark,
                 ),
               ),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(
-                    AppColors().blank,
+                    context.watch<ThemeProvider>().getBlank,
                   ),
                 ),
                 onPressed: () {
@@ -103,10 +103,10 @@ class _GamePageState extends State<GamePage> {
                     });
                   }
                 },
-                child: const Icon(
+                child: Icon(
                   Icons.forward_outlined,
                   size: 48,
-                  color: Colors.white,
+                  color: Theme.of(context).primaryColorDark,
                 ),
               ),
             ],
