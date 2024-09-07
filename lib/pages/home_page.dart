@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:wordle/constants/appstyle.dart';
 import 'package:wordle/constants/types.dart';
 import 'package:wordle/pages/game_page.dart';
+import 'package:wordle/pages/settings_page.dart';
+import 'package:wordle/providers/theme_provider.dart';
 import 'package:wordle/widgets/letter_tile.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,14 +43,37 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: AppColors().positive,
+                    color: Theme.of(context).highlightColor,
                     boxShadow: [AppStyle().tileShadow],
                   ),
                   margin: EdgeInsets.all(20),
                   padding: EdgeInsets.all(20),
                   child: Text(
                     'P L A Y',
-                    style: AppStyle().tileStyle,
+                    style: AppStyle()
+                        .tileStyle
+                        .copyWith(color: Theme.of(context).primaryColorDark),
+                  ),
+                )),
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => SettingsPage(),
+                  ));
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Theme.of(context).highlightColor,
+                    boxShadow: [AppStyle().tileShadow],
+                  ),
+                  margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                  padding: EdgeInsets.all(20),
+                  child: Text(
+                    'SETTINGS',
+                    style: AppStyle()
+                        .tileStyle
+                        .copyWith(color: Theme.of(context).primaryColorDark),
                   ),
                 ))
           ],
